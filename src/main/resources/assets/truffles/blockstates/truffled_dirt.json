@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": {"model": "truffles:block/truffled_dirt"}
+  }
+}

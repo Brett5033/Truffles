@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "xxx",
+    "xtx",
+    "xxx"
+  ],
+  "key":
+  {
+    "x":
+    {
+      "item": "minecraft:cooked_beef"
+    },
+    "t":
+    {
+      "item": "truffles:truffle"
+    }
+  },
+  "result":
+  {
+    "item": "truffles:fancy_steak",
+    "count": 8
+  }
+}
