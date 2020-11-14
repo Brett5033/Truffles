@@ -1,11 +1,17 @@
 package com.savageb.truffles.config;
 
+import com.electronwill.nightconfig.core.file.CommentedFileConfig;
+import com.electronwill.nightconfig.core.io.WritingMode;
 import com.savageb.truffles.Truffles;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.config.ModConfig;
 import org.apache.commons.lang3.tuple.Pair;
+import net.minecraftforge.fml.common.Mod;
 
+import java.io.File;
+/*
+@Mod.EventBusSubscriber
 public class TruffleConfig {
     public static final ClientConfig CLIENT;
     public static final ForgeConfigSpec CLIENT_SPEC;
@@ -24,6 +30,12 @@ public class TruffleConfig {
         if (configEvent.getConfig().getSpec() == TruffleConfig.CLIENT_SPEC) {
             bakeConfig();
         }
+    }
+
+    public static void loadConfig(ForgeConfigSpec config, String path) {
+        final CommentedFileConfig file = CommentedFileConfig.builder(new File(path)).preserveInsertionOrder().sync().autosave().writingMode(WritingMode.REPLACE).build();
+        file.load();
+        config.setConfig(file);
     }
 
     public static void bakeConfig(){
@@ -54,4 +66,4 @@ public class TruffleConfig {
         }
 
     }
-}
+}*/

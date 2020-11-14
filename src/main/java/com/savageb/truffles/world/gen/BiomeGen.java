@@ -1,7 +1,8 @@
 package com.savageb.truffles.world.gen;
 
 import com.savageb.truffles.Truffles;
-import com.savageb.truffles.config.TruffleConfig;
+//import com.savageb.truffles.config.TruffleConfig;
+import com.savageb.truffles.config.WorldGenConfig;
 import com.savageb.truffles.util.RegistryHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -57,7 +58,7 @@ public class BiomeGen {
 
 
         //Overworld Ore Register
-        overworldGen.add(register("truffled_dirt", RegistryHandler.TRUFFLED_DIRT_FEATURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).range(TruffleConfig.TRUFFLE_MAX_HEIGHT).func_242731_b(100)));
+        overworldGen.add(register("truffled_dirt", RegistryHandler.TRUFFLED_DIRT_FEATURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).range(WorldGenConfig.TRUFFLE_MAX_HEIGHT.get()).func_242731_b(100)));
         /*overworldOres.add(register("truffled_dirt", Feature.ORE.withConfiguration(new OreFeatureConfig(new BlockMatchRuleTest(Blocks.DIRT), RegistryHandler.TRUFFLED_DIRT.get().getDefaultState(), 4)) //Vein Size
                 .range(80).square() //Spawn height start
                 .func_242731_b(64))); //Chunk spawn frequency

@@ -3,7 +3,8 @@ package com.savageb.truffles.world.gen;
 import com.mojang.serialization.Codec;
 import com.savageb.truffles.Truffles;
 import com.savageb.truffles.blocks.TruffledDirt;
-import com.savageb.truffles.config.TruffleConfig;
+import com.savageb.truffles.config.Config;
+//import com.savageb.truffles.config.TruffleConfig;
 import com.savageb.truffles.config.WorldGenConfig;
 import com.savageb.truffles.util.RegistryHandler;
 import net.minecraft.block.Block;
@@ -38,13 +39,13 @@ public class TruffledDirtFeature extends Feature<NoFeatureConfig> {
 
     public TruffledDirtFeature(Codec<NoFeatureConfig> codec) {
         super(codec);
-        maxVeinSize = TruffleConfig.TRUFFLE_MAX_VEIN_SIZE;
+        maxVeinSize = WorldGenConfig.TRUFFLE_MAX_VEIN_SIZE.get();
     }
 
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-        if(!TruffleConfig.TRUFFLE_GENERATE)
+        if(!WorldGenConfig.TRUFFLE_GENERATE.get())
             return false;
         // Looks to see if it has picked a dirt block
         if(Tags.Blocks.DIRT.contains(reader.getBlockState(pos).getBlock())){
@@ -87,19 +88,25 @@ public class TruffledDirtFeature extends Feature<NoFeatureConfig> {
 
     //Recursive helper to spawn truffle chunks. Is recursive bad, I think so, is this the best way I can think of, yes.
     private void generateHelper(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config, int blockAllowance) {
+        if(!Tags.Blocks.DIRT.contains(reader.getBlockState(pos).getBlock()))
+            return;
         for (Direction direction2 : Direction.values()) {
             if (blockAllowance <= 0 || trufflesMade >= maxVeinSize)
                 return;
             if (reader.getBlockState(pos.offset(direction2)).isAir(reader, pos.offset(direction2)))
                 return; // Truffle Neighbor is not surrounded by blocks, don't generate
+        }
+        // Chance for Truffle
+        if (rand.nextDouble() < WorldGenConfig.TRUFFLE_CHANCE_FOR_VEIN.get()) {
+            // Truffle Generates, look for neighbors if allowance
+            reader.setBlockState(pos, RegistryHandler.TRUFFLED_DIRT.get().getDefaultState(), 2);
+            trufflesMade++;
 
-            // Can plug in Config Value here
-            if (rand.nextDouble() < TruffleConfig.TRUFFLE_CHANCE_FOR_VEIN) {
-                // Block Generates, look for neighbors if allowance
-                reader.setBlockState(pos, RegistryHandler.TRUFFLED_DIRT.get().getDefaultState(), 2);
-                trufflesMade++;
+            // Check neighbors for valid pos
+            for (Direction direction2 : Direction.values()) {
                 generateHelper(reader, generator, rand, pos.offset(direction2), config, blockAllowance - 1);
             }
         }
+
     }
 }

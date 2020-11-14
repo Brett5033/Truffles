@@ -1,11 +1,31 @@
 package com.savageb.truffles.entities;
 
+import com.savageb.truffles.config.EntityConfig;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.MobEntity;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.AttributeModifierMap;
+import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.world.World;
 
 public class PigTracker extends PigEntity {
-    public PigTracker(EntityType<? extends PigEntity> p_i50250_1_, World p_i50250_2_) {
-        super(p_i50250_1_, p_i50250_2_);
+    public PigTracker(EntityType<? extends PigEntity> type, World world) {
+        super(type, world);
+    }
+
+    public static AttributeModifierMap.MutableAttribute setCustomAttributes(){
+        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10.0D).createMutableAttribute(Attributes.MOVEMENT_SPEED, 1D);
+    }
+
+    @Override
+    protected void registerGoals(){
+        super.registerGoals();
+        this.goalSelector.addGoal(2,  new FindTruffleGoal(this, 1.8D, EntityConfig.PIG_SEARCH_RADIUS_CONFIG.get(), 1.5f));
+    }
+
+    @Override
+    public float getMountedSpeed() {
+        return (float)this.getAttributeValue(Attributes.MOVEMENT_SPEED) * 2f;
     }
 }

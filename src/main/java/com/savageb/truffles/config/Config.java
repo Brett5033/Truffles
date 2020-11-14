@@ -3,9 +3,11 @@ package com.savageb.truffles.config;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.fml.common.Mod;
 
 import java.io.File;
 
+@Mod.EventBusSubscriber
 public class Config {
 
     private static final ForgeConfigSpec.Builder SERVER_BUILDER = new ForgeConfigSpec.Builder();
@@ -16,6 +18,7 @@ public class Config {
 
     static {
         WorldGenConfig.init(SERVER_BUILDER, CLIENT_BUILDER);
+        EntityConfig.init(SERVER_BUILDER, CLIENT_BUILDER);
         //ItemConfig.init(SERVER_BUILDER, CLIENT_BUILDER);
         //BlockConfig.init(SERVER_BUILDER, CLIENT_BUILDER);
         //RenderingConfig.init(CLIENT_BUILDER);
