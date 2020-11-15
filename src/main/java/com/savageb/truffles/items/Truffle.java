@@ -1,6 +1,7 @@
 package com.savageb.truffles.items;
 
 import com.savageb.truffles.Truffles;
+import com.savageb.truffles.init.ModItemGroups;
 import javafx.util.Pair;
 import net.minecraft.item.Food;
 import net.minecraft.item.Foods;
@@ -14,7 +15,7 @@ import java.util.function.Supplier;
 
 public class Truffle extends Item{
     public Truffle() {
-        super(new Item.Properties().group(Truffles.TRUFFLES_ITEM_GROUP)
+        super(new Item.Properties().group(ModItemGroups.TRUFFLES_ITEM_GROUP)
         .maxStackSize(64)
         .food(new Food.Builder()
             .effect(() -> new EffectInstance(Effects.LUCK,200,1,false,false),1f)

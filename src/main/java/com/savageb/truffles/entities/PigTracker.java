@@ -1,6 +1,6 @@
 package com.savageb.truffles.entities;
 
-import com.savageb.truffles.config.EntityConfig;
+import com.savageb.truffles.config.TruffleConfig;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -21,7 +21,7 @@ public class PigTracker extends PigEntity {
     @Override
     protected void registerGoals(){
         super.registerGoals();
-        this.goalSelector.addGoal(2,  new FindTruffleGoal(this, 1.8D, EntityConfig.PIG_SEARCH_RADIUS_CONFIG.get(), 1.5f));
+        this.goalSelector.addGoal(2,  new FindTruffleGoal(this, 1.8D, TruffleConfig.pigSearchRadius, 1.5f));
     }
 
     @Override

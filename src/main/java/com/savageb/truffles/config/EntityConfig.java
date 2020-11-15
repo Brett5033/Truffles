@@ -4,6 +4,7 @@ import com.savageb.truffles.Truffles;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+/*
 public class EntityConfig {
 
     public static ForgeConfigSpec.BooleanValue PIG_SEARCH_CONFIG;
@@ -25,3 +26,5 @@ public class EntityConfig {
 
     }
 }
+
+ */

@@ -3,6 +3,7 @@ package com.savageb.truffles.config;
 import com.savageb.truffles.Truffles;
 import net.minecraftforge.common.ForgeConfigSpec;
 
+/*
 public class WorldGenConfig {
 
 
@@ -27,3 +28,5 @@ public class WorldGenConfig {
 
     }
 }
+
+ */

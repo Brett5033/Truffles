@@ -1,13 +1,5 @@
 package com.savageb.truffles.init.world;
 
-import com.savageb.truffles.Truffles;
-import com.savageb.truffles.world.gen.TruffledDirtFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.IFeatureConfig;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 /*
 import java.util.function.Supplier;
 

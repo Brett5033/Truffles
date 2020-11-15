@@ -1,52 +1,38 @@
 package com.savageb.truffles.world.gen;
 
 import com.mojang.serialization.Codec;
-import com.savageb.truffles.Truffles;
-import com.savageb.truffles.blocks.TruffledDirt;
-import com.savageb.truffles.config.Config;
 //import com.savageb.truffles.config.TruffleConfig;
-import com.savageb.truffles.config.WorldGenConfig;
-import com.savageb.truffles.util.RegistryHandler;
+import com.savageb.truffles.config.TruffleConfig;
+import com.savageb.truffles.init.ModBlocks;
+import com.savageb.truffles.items.Truffle;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.Item;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
 import net.minecraft.util.Direction;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ISeedReader;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraftforge.common.Tags;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class TruffledDirtFeature extends Feature<NoFeatureConfig> {
+public class TruffleDirtFeature extends Feature<NoFeatureConfig> {
 
-    private final int maxVeinSize;
+    private int maxVeinSize = 6;
     private int trufflesMade = 0;
 
 
-    public TruffledDirtFeature(Codec<NoFeatureConfig> codec) {
+    public TruffleDirtFeature(Codec<NoFeatureConfig> codec) {
         super(codec);
-        maxVeinSize = WorldGenConfig.TRUFFLE_MAX_VEIN_SIZE.get();
     }
-
 
     @Override
     public boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, NoFeatureConfig config) {
-        if(!WorldGenConfig.TRUFFLE_GENERATE.get())
-            return false;
+        //System.out.println("Generate Check");
+        //if(!TruffleConfig.truffleGenerate)
+        //    return false;
+        maxVeinSize = TruffleConfig.truffleMaxVeinSize;
         // Looks to see if it has picked a dirt block
         if(Tags.Blocks.DIRT.contains(reader.getBlockState(pos).getBlock())){
             boolean validBlock = false;
@@ -72,7 +58,7 @@ public class TruffledDirtFeature extends Feature<NoFeatureConfig> {
                     return false;
 
                 // Generate Truffle
-                reader.setBlockState(pos, RegistryHandler.TRUFFLED_DIRT.get().getDefaultState(), 2);
+                reader.setBlockState(pos, ModBlocks.TRUFFLED_DIRT.get().getDefaultState(), 2);
                 System.out.println("FINDME: Generating Truffle at: " + pos.toString());
 
 
@@ -97,9 +83,9 @@ public class TruffledDirtFeature extends Feature<NoFeatureConfig> {
                 return; // Truffle Neighbor is not surrounded by blocks, don't generate
         }
         // Chance for Truffle
-        if (rand.nextDouble() < WorldGenConfig.TRUFFLE_CHANCE_FOR_VEIN.get()) {
+        if (rand.nextDouble() < TruffleConfig.truffleChanceForVein) {
             // Truffle Generates, look for neighbors if allowance
-            reader.setBlockState(pos, RegistryHandler.TRUFFLED_DIRT.get().getDefaultState(), 2);
+            reader.setBlockState(pos, ModBlocks.TRUFFLED_DIRT.get().getDefaultState(), 2);
             trufflesMade++;
 
             // Check neighbors for valid pos

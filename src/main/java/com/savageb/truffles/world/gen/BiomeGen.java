@@ -2,14 +2,13 @@ package com.savageb.truffles.world.gen;
 
 import com.savageb.truffles.Truffles;
 //import com.savageb.truffles.config.TruffleConfig;
-import com.savageb.truffles.config.WorldGenConfig;
-import com.savageb.truffles.util.RegistryHandler;
+import com.savageb.truffles.config.TruffleConfig;
+import com.savageb.truffles.init.ModFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
@@ -28,7 +27,7 @@ public class BiomeGen {
     public static ArrayList<String> SpawnTrufflesBiomes = new ArrayList<String>();
 
 
-    private static final ArrayList<ConfiguredFeature<?, ?>> overworldGen = new ArrayList<ConfiguredFeature<?, ?>>();
+    public static final ArrayList<ConfiguredFeature<?, ?>> overworldGen = new ArrayList<ConfiguredFeature<?, ?>>();
     //private static final ArrayList<ConfiguredFeature<?, ?>> netherGen = new ArrayList<ConfiguredFeature<?, ?>>();
     //private static final ArrayList<ConfiguredFeature<?, ?>> endGen = new ArrayList<ConfiguredFeature<?, ?>>();
 
@@ -58,7 +57,7 @@ public class BiomeGen {
 
 
         //Overworld Ore Register
-        overworldGen.add(register("truffled_dirt", RegistryHandler.TRUFFLED_DIRT_FEATURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).range(WorldGenConfig.TRUFFLE_MAX_HEIGHT.get()).func_242731_b(100)));
+        overworldGen.add(register("truffled_dirt", ModFeatures.TRUFFLE_DIRT_FEATURE.get().withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).range(128).func_242731_b(100)));
         /*overworldOres.add(register("truffled_dirt", Feature.ORE.withConfiguration(new OreFeatureConfig(new BlockMatchRuleTest(Blocks.DIRT), RegistryHandler.TRUFFLED_DIRT.get().getDefaultState(), 4)) //Vein Size
                 .range(80).square() //Spawn height start
                 .func_242731_b(64))); //Chunk spawn frequency
@@ -96,20 +95,21 @@ public class BiomeGen {
         }
          */
         boolean validBiome = false;
-        for(String key: SpawnTrufflesBiomes){
+        for(String key: BiomeGen.SpawnTrufflesBiomes){
             if(name.equals(new ResourceLocation(key))){
                 validBiome = true;
                 break;
             }
         }
         if(validBiome) {
-        //if(event.getCategory().equals(Biome.Category.byName()))
-            for (ConfiguredFeature<?, ?> ore : overworldGen) {
+            //if(event.getCategory().equals(Biome.Category.byName()))
+            for (ConfiguredFeature<?, ?> ore : BiomeGen.overworldGen) {
                 //System.out.println("Generating Truffles in biome: " + name.toString());
                 if (ore != null) generation.withFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ore);
             }
         }
     }
+
 
     private static <FC extends IFeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
         return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, Truffles.MOD_ID + ":" + name, configuredFeature);

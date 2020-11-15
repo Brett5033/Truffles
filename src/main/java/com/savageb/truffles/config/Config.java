@@ -6,7 +6,7 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.common.Mod;
 
 import java.io.File;
-
+/*
 @Mod.EventBusSubscriber
 public class Config {
 
@@ -34,3 +34,5 @@ public class Config {
         config.setConfig(file);
     }
 }
+
+ */

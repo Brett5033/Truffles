@@ -1,25 +1,5 @@
-package com.savageb.truffles.util;
-
-import com.savageb.truffles.Truffles;
-import com.savageb.truffles.blocks.*;
-import com.savageb.truffles.entities.PigTracker;
-import com.savageb.truffles.items.*;
-import com.savageb.truffles.world.gen.TruffledDirtFeature;
-import net.minecraft.block.Block;
-import net.minecraft.entity.EntityClassification;
-import net.minecraft.entity.EntitySize;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.PigEntity;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-
+package com.savageb.truffles.init;
+/*
 public class RegistryHandler {
 
     // Registries:
@@ -62,4 +42,7 @@ public class RegistryHandler {
         //ENTITY_TYPES.register(modBus);
         //Truffles.LOGGER.info("Entity Types registered");
     }
+
+
 }
+        */
