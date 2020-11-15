@@ -16,7 +16,6 @@ public class Truffle extends Item{
     public Truffle() {
         super(new Item.Properties().group(Truffles.TRUFFLES_ITEM_GROUP)
         .maxStackSize(64)
-        .rarity(Rarity.UNCOMMON)
         .food(new Food.Builder()
             .effect(() -> new EffectInstance(Effects.LUCK,200,1,false,false),1f)
             .hunger(2)

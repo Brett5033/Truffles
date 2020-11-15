@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "truffles:block/oil_press" },
+    "facing=south": { "model": "truffles:block/oil_press", "y":  180},
+    "facing=west": { "model": "truffles:block/oil_press", "y":  270},
+    "facing=east": { "model": "truffles:block/oil_press", "y":  90}
+  }
+}

@@ -84,9 +84,6 @@ public class Truffles
     private void setup(final FMLCommonSetupEvent event)
     {
         BiomeGen.registerOres();
-        //DeferredWorkQueue.runLater(() -> {
-        //     GlobalEntityTypeAttributes.put(RegistryHandler.PIG_TRACKER.get(), PigTracker.setCustomAttributes().create());
-        //});
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
@@ -96,41 +93,13 @@ public class Truffles
     @Mod.EventBusSubscriber
     public static class EventSubscribers {
 
-        /*@SubscribeEvent
-        public static void onPigMounted(EntityMountEvent event){
-            if(event.getEntityBeingMounted() instanceof PigEntity){
-                PigEntity pig = (PigEntity)event.getEntityBeingMounted();
-                System.out.println("Adding Pig AI!");
-                pig.goalSelector.addGoal(3, new FindTruffleGoal(pig, pig.getMountedSpeed(), EntityConfig.PIG_SEARCH_RADIUS_CONFIG.get()));
-            }
-        }*/
-
         @SubscribeEvent
         public static void onPigSpawn(EntityJoinWorldEvent event){
             if(event.getEntity() instanceof PigEntity){
                 PigEntity pig = (PigEntity)event.getEntity();
                 //System.out.println("Adding Pig AI!");
-                //pig.setAIMoveSpeed(2f);
-                //AttributeModifier boostSpeed = new AttributeModifier(playerUUID, "vmodspeed", 1.0D, 2).setSaved(true));
-                /*PigTracker newPig = RegistryHandler.PIG_TRACKER.get().create(pig.world);
-                if(!event.getWorld().isRemote()){
-                    newPig.setLocationAndAngles(pig.getPosX(), pig.getPosY(), pig.getPosZ(), 0 , 0);
-                }
-                pig.dea
-                Set<PrioritizedGoal> goals = ObfuscationReflectionHelper.getPrivateValue(GoalSelector.class, pig.goalSelector, "goals");
-                Iterator itr = goals.iterator();
-                while(itr.hasNext()){
-                    PrioritizedGoal p = (PrioritizedGoal)itr.next();
-                    if(p.getGoal() instanceof TemptGoal){
-                        pig.goalSelector.removeGoal(p);
-                        break;
-                    }
-                }
-                pig.goalSelector.addGoal(4, new TemptGoal(pig, 1.5D, Ingredient.fromItems(Items.CARROT_ON_A_STICK), false));
-                */
-                //pig.goalSelector.addGoal(3, new TemptGoal(pig, 2D, Ingredient.fromItems(RegistryHandler.TRUFFLE.get()), false));
+                pig.goalSelector.addGoal(4, new TemptGoal(pig, 1.2D, Ingredient.fromItems(RegistryHandler.TRUFFLE.get()), false));
                 pig.goalSelector.addGoal(2,  new FindTruffleGoal(pig, 1.4D, EntityConfig.PIG_SEARCH_RADIUS_CONFIG.get(), 2f));
-                //pig.goalSelector.addGoal(2, new FindTruffleGoal(pig, pig.getMountedSpeed(), 128));
             }
         }
     }

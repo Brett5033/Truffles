@@ -11,7 +11,6 @@ public class FancySteak extends Item {
     public FancySteak() {
         super(new Item.Properties().group(Truffles.TRUFFLES_ITEM_GROUP)
                 .maxStackSize(64)
-                .rarity(Rarity.UNCOMMON)
                 .food(new Food.Builder()
                         .effect(() -> new EffectInstance(Effects.LUCK,1200,1,false,false),1f)
                         .hunger(10)

@@ -1,6 +1,8 @@
 {
   "item.truffles.truffle": "Truffle",
+  "item.truffles.truffle_oil": "Truffle Oil",
   "block.truffles.truffled_dirt": "Truffled Dirt",
+  "block.truffles.oil_press": "Oil Press",
   "item.truffles.fancy_steak": "Fancy Steak",
   "itemGroup.truffles": "Truffles"
 }
